@@ -27,14 +27,25 @@ public class CustomProductRepositoryImpl implements CustomProductRepository {
             throw new RuntimeException("Category not found");
         }
 
-        Optional<Product> existingProduct = productRepository.findByName(product.getName());
+        Optional<Product> existingProduct = productRepository.findById(product.getProduct_id());
         if (!existingProduct.isPresent()) {
             newProduct.setProduct_id(product.getProduct_id());
             newProduct.setName(product.getName());
             newProduct.setPrice(product.getPrice());
+            //newProduct.setImage(product.getImage());
             newProduct.setCategory(product.getCategory());
             entityManager.persist(newProduct);
         }
         return newProduct;
+    }
+
+    @Override
+    @Transactional
+    public void deleteProduct(Integer id) {
+        Optional<Product> existingProduct = productRepository.findById(id);
+        if (existingProduct.isEmpty()) {
+            throw new RuntimeException("Product not found");
+        }
+        entityManager.remove(existingProduct.get());
     }
 }

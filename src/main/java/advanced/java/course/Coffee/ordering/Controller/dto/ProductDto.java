@@ -12,6 +12,7 @@ public class ProductDto {
         private Integer product_id;
         private String name;
         private Integer price;
+        //private byte[] image;
         private CategoryDto category_id;
 
         public static ProductDto fromProduct(Product product) {
@@ -19,6 +20,7 @@ public class ProductDto {
                     product.getProduct_id(),
                     product.getName(),
                     product.getPrice(),
+                    //product.getImage(),
                     CategoryDto.fromCategory(product.getCategory())
             );
         }

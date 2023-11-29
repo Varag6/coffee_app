@@ -68,8 +68,23 @@ public class ProductController {
         return productRepository.findById(id).get();
     }
 
+//@GetMapping(value = "/products/{id}/image", produces = APPLICATION_OCTET_STREAM_VALUE)
+//public ResponseEntity<Resource> getProductImage(@PathVariable("id") Integer id) throws IOException {
+//    Product product = productRepository.findById(id).get();
+//    ByteArrayResource resource = new ByteArrayResource(product.getImage());
+//    return ResponseEntity.ok()
+//            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + product.getName() + ".png")
+//            .body(resource);
+//}
+
     @PostMapping
     public ProductDto createProduct(@RequestBody Product product) {
         return ProductDto.fromProduct(customProductRepository.createProduct(product));
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteProduct(@PathVariable("id") Integer id) {
+        customProductRepository.deleteProduct(id);
+    }
+
 }

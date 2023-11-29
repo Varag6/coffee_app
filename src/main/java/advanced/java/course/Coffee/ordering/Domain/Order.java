@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -23,4 +23,5 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product_id;
+
 }

@@ -4,4 +4,6 @@ import advanced.java.course.Coffee.ordering.Domain.Product;
 public interface CustomProductRepository {
 
     Product createProduct(Product product);
+
+    void deleteProduct(Integer id);
 }
